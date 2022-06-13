@@ -1,23 +1,31 @@
-import logo from './logo.svg';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
+import { AuthContextProvider } from './context/AuthContext';
+import Navbar from './Navbar'
+import Home from './Home'
+import Signin from './Signin'
+import Account from './Account'
+import Protectedroute from './Protectedroute';
+
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+        {/* <h1 className='text-center text-3xl font-bold mt-8'>Google Authentication and Context</h1> */}
+        <AuthContextProvider>
+          <Navbar/>
+          <Routes>
+            <Route path='/' element={<Home/>}/>
+            <Route path='/signin' element={<Signin/>}/>
+            <Route path='/account' element={
+            <Protectedroute>
+              <Account/>
+            </Protectedroute>}/>
+          </Routes>
+        </AuthContextProvider>
+      </BrowserRouter>
     </div>
   );
 }
