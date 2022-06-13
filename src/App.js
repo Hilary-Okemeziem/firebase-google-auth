@@ -1,5 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import './App.css';
+import { Route, Routes } from 'react-router-dom';
 import { AuthContextProvider } from './context/AuthContext';
 import Navbar from './Navbar'
 import Home from './Home'
@@ -11,9 +10,7 @@ import Protectedroute from './Protectedroute';
 
 function App() {
   return (
-    <div className="App">
-      <BrowserRouter>
-        {/* <h1 className='text-center text-3xl font-bold mt-8'>Google Authentication and Context</h1> */}
+    <div>
         <AuthContextProvider>
           <Navbar/>
           <Routes>
@@ -25,7 +22,6 @@ function App() {
             </Protectedroute>}/>
           </Routes>
         </AuthContextProvider>
-      </BrowserRouter>
     </div>
   );
 }

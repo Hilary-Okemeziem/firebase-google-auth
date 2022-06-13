@@ -1,28 +1,30 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { UserAuth } from './context/AuthContext'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { UserAuth } from './context/AuthContext';
 
 const Navbar = () => {
-  const {user, logout} = UserAuth();
+  const { user, logOut } = UserAuth();
 
   const handleSignOut = async () => {
     try {
-      await logout()
+      await logOut()
     } catch (error) {
-      console.log(error);
-      
+      console.log(error)
     }
   }
 
   return (
-    <div className='flex justify-between bg-gray-200 w-full p-4'>
-      <h1 className='text-center text-2xl font-bold'>
-        Firebase Google Authentication
+    <div className='flex justify-between bg-gray-200 w-full p-3 px-6'>
+      <h1 className='text-2xl font-bold'>
+        Firebase Google Auth & Context
       </h1>
-      {user?.displayName ? (<button onClick={handleSignOut}>Logout</button>) : (<Link to='/signin'>Sign In</Link>)}
-      
+      {user?.displayName ? (
+        <button onClick={handleSignOut}>Logout</button>
+      ) : (
+        <Link to='/signin'>Signin</Link>
+      )}
     </div>
   );
 };
 
-export default Navbar
+export default Navbar;
